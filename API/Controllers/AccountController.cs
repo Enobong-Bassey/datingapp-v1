@@ -14,9 +14,8 @@ public class AccountController(AppDbContext context, ITokenService tokenService)
 {
     [HttpPost("register")] // POST: api/account/register
     public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
-    
     {
-        if (await UserExists(registerDto.Email))
+        if (await EmailExists(registerDto.Email))
         {
             return BadRequest("Email is already taken");
         }
@@ -63,7 +62,7 @@ public class AccountController(AppDbContext context, ITokenService tokenService)
         return user.ToDto(tokenService);
     }
 
-    private async Task<bool> UserExists(string email)
+    private async Task<bool> EmailExists(string email)
     {
         return await context.Users.AnyAsync(u => u.Email.ToLower() == email.ToLower());
     }

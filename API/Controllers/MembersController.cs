@@ -16,7 +16,7 @@ namespace API.Controllers
             return Ok(members);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("{id}")]  // localhost:5001/api/members/1
         public async Task<ActionResult<AppUser>> GetMember(string id)
         {
