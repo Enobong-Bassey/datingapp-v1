@@ -1,9 +1,10 @@
 import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter, withViewTransitions } from '@angular/router';
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { InitService } from '../core/services/init-service';
+import { errorInterceptor } from '../core/interceptors/error-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,6 +12,7 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideHttpClient(),
     provideRouter(routes, withViewTransitions()),
+    provideHttpClient(withInterceptors([errorInterceptor])),
     provideAppInitializer(async () => {
       // Initialization logic can be added here if needed in the future
       const initService = inject(InitService);
