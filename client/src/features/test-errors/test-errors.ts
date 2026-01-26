@@ -20,7 +20,6 @@ export class TestErrors {
     });
   }
   
-
   get400Error() {
     this.http.get(this.baseUrl + 'buggy/bad-request').subscribe({
       next: response => console.log(response),
@@ -49,6 +48,6 @@ export class TestErrors {
         console.log(error);
         this.validationErrors.set(error);
       }
-    });   
+    });
   }
 }

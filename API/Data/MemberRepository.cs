@@ -20,11 +20,10 @@ public class MemberRepository(AppDbContext context) : IMemberRepository
      public async Task<IReadOnlyList<Photo>> GetPhotosForMemberAsync(string memberId)
     {
         return await context.Members
-        .Where(p => p.Id == memberId)
-        .SelectMany(p => p.Photos)
-        .ToListAsync();
-    }
- 
+            .Where(p => p.Id == memberId)
+            .SelectMany(p => p.Photos)
+            .ToListAsync();
+    } 
 
     public async Task<bool> SaveAllAsync()
     {

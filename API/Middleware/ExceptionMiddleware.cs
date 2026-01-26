@@ -2,13 +2,12 @@ using System;
 using System.Net;
 using System.Text.Json;
 using API.Errors;
-using Microsoft.Build.Utilities;
 
 namespace API.Middleware;
 
 public class ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger, IHostEnvironment env)
 {
-    public async System.Threading.Tasks.Task InvokeAsync(HttpContext context)
+    public async Task InvokeAsync(HttpContext context)
     {
         try
         {

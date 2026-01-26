@@ -19,7 +19,7 @@ public class Seed
         
         if (members == null)
         {
-            Console.WriteLine("No member data found to seed.");
+            Console.WriteLine("No members in seed data.");
             return;
         }
 
