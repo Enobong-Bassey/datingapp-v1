@@ -6,6 +6,7 @@ import { lastValueFrom } from 'rxjs';
 import { InitService } from '../core/services/init-service';
 import { errorInterceptor } from '../core/interceptors/error-interceptor';
 import { jwtInterceptor } from '../core/interceptors/jwt-interceptor';
+import { loadingInterceptor } from '../core/interceptors/loading-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,7 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideHttpClient(),
     provideRouter(routes, withViewTransitions()),
-    provideHttpClient(withInterceptors([errorInterceptor, jwtInterceptor])),
+    provideHttpClient(withInterceptors([errorInterceptor, jwtInterceptor, loadingInterceptor])),
     provideAppInitializer(async () => {
       // Initialization logic can be added here if needed in the future
       const initService = inject(InitService);
